@@ -11,10 +11,16 @@
 (defn- powers-of-base [base n]
   (map #(expt base %) (range (dec n) -1 -1)))
 
-(defn- to-decimal [base digits]  ;; converts a number (taken as a list of its digits) to decimal
+(comment (defn- to-decimal [base digits]  ;; converts a number (taken as a list of its digits) to decimal
   (let [digit-count (count digits)
         place-values (powers-of-base base digit-count)]
-    (apply + (map * digits place-values))))
+    (apply + (map * digits place-values)))))
+    
+(defn to-decimal [base digits] ;; More readable implementation of the above to-decimal function that has been commented out.
+  (->> (count digits)
+       (powers-of-base base)
+       (map * digits)
+       (apply +)))
 
 (defn- to-base [base n] ;; converts a decimal number to a sequence of its digits in any given base
   (if (< n base)
