@@ -7,10 +7,15 @@
     [n]
     (conj (get-digits (quot n 10)) (rem n 10))))
 
-(defn expt [base exponent] ; custom function to calculate exponent because Math/pow gave inaccurate results for big integers
+; custom function to calculate exponent because Math/pow gave inaccurate results for big integers
+(comment (defn expt [base exponent] 
   (if (zero? exponent)
     1
-    (* base (expt base (dec exponent)))))
+    (* base (expt base (dec exponent))))))
+
+; Better, more readable implementation of the expt function. The above implementation also works fine.
+(defn expt [base exponent]
+  (apply * (repeat exponent base)))
 
 (comment (defn armstrong? [n] ;; <- arglist goes here
   ;; your code goes here
