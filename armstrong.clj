@@ -12,8 +12,16 @@
     1
     (* base (expt base (dec exponent)))))
 
-(defn armstrong? [n] ;; <- arglist goes here
+(comment (defn armstrong? [n] ;; <- arglist goes here
   ;; your code goes here
   (= n (apply + (map
                     #(expt % (count (get-digits n)))
-                    (get-digits n)))))
+                    (get-digits n))))))
+
+; the above implementation works fine but I decided that the below one is more readable so I commented the above implementation
+(defn armstrong? [n] 
+  (let [digits (get-digits n)
+        digit-count (count digits)
+        pow-digits (map #(expt % digit-count) digits)
+        sumnum (apply + pow-digits)]
+    (= n sumnum)))
