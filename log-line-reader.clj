@@ -1,4 +1,4 @@
-(ns log-levels
+(ns log-line-reader
   (:require [clojure.string :as str]))
 
 (defn- parse-log [s]  ;; function to parese the log-line into (level , message) using a regex
