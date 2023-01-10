@@ -8,7 +8,16 @@
 ;;           someCamelCase WithPascalCase AND_SNAKE-kebabCamel/Pascal@CASE => SCCWPCASKCPC
 ;; (whitespaces at the beginning and end of the string are trimmed.)
 
+(defn acronym [input]
+  (let [regex #"\b\p{IsAlphabetic}|(?<=\p{IsLowercase})\p{IsUppercase}"]
+    ((comp str/upper-case 
+           str/join
+           (partial re-seq regex))
+     input)))
 
+;; Code below is of earlier implementation and has been commented out, but works fine.
+
+(comment
 (defn- extract-letters [word]
   (if (empty? word)
     ""
@@ -27,3 +36,5 @@
     (->> words
          (map extract-letters)
          (apply str))))
+) ;; end of comment block
+
