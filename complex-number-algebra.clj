@@ -42,7 +42,7 @@
 
 (def imaginary second)
 
-(def abs (comp Math/sqrt sqr))
+(def abs #(Math/sqrt (sqr %)))
 
 (def conjugate #(update % 1 -))
 
@@ -57,3 +57,4 @@
     (let [division #(/ % (double (sqr n2)))]
       (proc (comp division +) (comp division -)
             n1 n2))))
+
