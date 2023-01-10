@@ -17,8 +17,7 @@
 (defn expt [base exponent]
   (apply * (repeat exponent base)))
 
-(comment (defn armstrong? [n] ;; <- arglist goes here
-  ;; your code goes here
+(comment (defn armstrong? [n]
   (= n (apply + (map
                     #(expt % (count (get-digits n)))
                     (get-digits n))))))
