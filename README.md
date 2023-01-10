@@ -6,5 +6,6 @@ This repository contains code snippets for everything Clojure.
   - Anagrams
   - Armstrong Number
   - Base Converter
+  - Collatz Steps
   - Log-line Reader
   - Talk to Bob
