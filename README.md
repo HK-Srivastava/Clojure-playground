@@ -7,6 +7,7 @@ This repository contains code snippets for everything Clojure.
   - Armstrong Number
   - Base Converter
   - Collatz Steps
+  - Complex Number's Algebra (using macros)
   - DNA
   - Log-line Reader
   - Talk to Bob
