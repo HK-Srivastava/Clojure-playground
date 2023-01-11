@@ -3,7 +3,7 @@
 ;;          1001001 => "one million one thousand one"
 ;; At the end, a comparison of the time taken by each implementation is provided.
 
-(ns cljex.compare-time
+(ns number-to-word
   (:require [clojure.pprint :refer [cl-format]]
             [clojure.string :as str]))
 
