@@ -17,16 +17,14 @@
 (def hundreds {\0 "" \1 "one hundred", \2 "two hundred", \3 "three hundred", \4 "four hundred",
                \5 "five hundred", \6 "six hundred", \7 "seven hundred", \8 "eight hundred", \9 "nine hundred"})
 
-(defn- ones-tens
-  ([o] [((tens \1) o)])
-  ([o t]
-   (if (= \1 t)
-     (ones-tens o)
-     (->> [(tens t) (ones o)]
-          (remove #(or (nil? %) (empty? %)))
-          (interpose "-")
-          (apply str)
-          vector))))
+(defn- ones-tens [o t]
+  (if (= \1 t)
+    [((tens \1) o)]
+    (->> [(tens t) (ones o)]
+         (remove #(or (nil? %) (empty? %)))
+         (interpose "-")
+         (apply str)
+         vector)))
 
 (defn- parse-item [item]
   (let [label (keys item)
