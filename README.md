@@ -11,4 +11,7 @@ This repository contains code snippets for everything Clojure.
   - DNA
   - Log-line Reader
   - Number to Words
+  - Pangram
+  - Phone Number
+  - Prime Factors
   - Talk to Bob
