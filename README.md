@@ -2,6 +2,7 @@
 This repository contains code snippets for everything Clojure.
 
 ## Index
+  - RNA Decoder
   - Acronym Generator
   - Anagrams
   - Armstrong Number
