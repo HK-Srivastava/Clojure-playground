@@ -9,13 +9,24 @@
 ;; (whitespaces at the beginning and end of the string are trimmed.)
 
 (defn acronym [input]
+  (->> input
+    (re-seq #"[A-Z][a-z]+|[0-9]+|[a-z]+|[A-Z]+")
+    (map first)
+    (apply str)
+    (str/upper-case)))
+
+;; Code below is of an earlier implementation and has been commented out, but works fine.
+
+(comment
+(defn acronym [input]
   (let [regex #"\b\p{IsAlphabetic}|(?<=\p{IsLowercase})\p{IsUppercase}"]
     ((comp str/upper-case 
            str/join
            (partial re-seq regex))
      input)))
+)
 
-;; Code below is of earlier implementation and has been commented out, but works fine.
+;; Code below is of an earlier implementation and has been commented out, but works fine.
 
 (comment
 (defn- extract-letters [word]
