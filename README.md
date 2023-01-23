@@ -10,6 +10,7 @@ This repository contains code snippets for everything Clojure.
   - Collatz Steps
   - Complex Number's Algebra (using macros)
   - DNA
+  - English to PigLatin Translator
   - Log-line Reader
   - Number to Words
   - Pangram
