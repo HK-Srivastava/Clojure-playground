@@ -12,12 +12,33 @@
   (:require [clojure.string :as str]))
 
 (defn- translate-word [word]
+  (if (re-find #"^[aeiou]|^xr|^yt" word)
+      (str word "ay")
+      (let [len (count word)
+            arr (re-seq #"[^aeiouy]+|[aeiou]+|y" word)
+            ist (first arr)
+            rst (apply str (rest arr))]
+        (if (and (= \q (last ist)) (= \u (first rst)))
+          (str (subs rst 1) ist "uay")
+          (str rst ist  "ay")))))
+
+(defn translate [phrase]
+  (->> (str/split phrase #" ")
+      (map translate-word)
+      (str/join #" ")))
+
+;; --------------------------------------------------------------------------------
+;; Written below is an earlier implementation that has been commented out, but works fine.
+
+(comment
+
+(defn- translate-word [word]
     (cond
       (and (= 2 (count word)) 
            (= \y (last word))) (str "y" (first word) "ay")
       (re-find #"^[aeiou]|^xr|^yt" word) (str word "ay")
       :else
-        (let [[_ remaining ist] (re-matches #"(.*[aeiou])(.*)" (str/reverse word)) ;; Here `ist` is consonant cluster and `remaining` is rest of the word
+        (let [[_ remaining ist] (re-matches #"(.*[aeiou])(.*)" (str/reverse word))
               [ist remaining] (if (nil? ist)
                                 [word ""] 
                                 (map str/reverse [ist remaining]))
@@ -34,3 +55,4 @@
   (->> (str/split phrase #" ")
       (map translate-word)
       (str/join #" ")))
+)
